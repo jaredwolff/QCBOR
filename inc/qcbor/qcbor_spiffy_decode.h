@@ -964,6 +964,10 @@ static void QCBORDecode_GetUndefinedInMapSZ(QCBORDecodeContext *pCtx,
 
  See also @ref CBOR_TAG_DATE_STRING, QCBOREncode_AddDateString() and
  @ref QCBOR_TYPE_DATE_STRING.
+
+
+
+
 */
 static void QCBORDecode_GetDateString(QCBORDecodeContext *pCtx,
                                       uint8_t             uTagRequirement,
@@ -1668,6 +1672,28 @@ void QCBORDecode_EnterBstrWrappedFromMapSZ(QCBORDecodeContext *pCtx,
  the byte string that was exited.
 */
 void QCBORDecode_ExitBstrWrapped(QCBORDecodeContext *pCtx);
+
+
+/*
+
+ This positions the traversal cursor at the data item that is the
+ value of the map item. It set past the label.
+
+ If GetNext is called, it will return the data item, but
+ not the label.
+
+ A primary purpose is so that PeekTagNumber, GetTagNumber and
+ ProcessTagNumber can be used on map entries.
+
+ If the item is not in the map, TODO: happens.
+
+
+ */
+
+void QCBORDecode_SeekInMapN(QCBORDecodeContext *pCtx, int64_t nLabel);
+
+
+void QCBORDecode_SeekInMapSZ(QCBORDecodeContext *pCtx, const char *szLabel);
 
 
 

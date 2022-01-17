@@ -7881,3 +7881,47 @@ int32_t BoolTest(void)
 
    return 0;
 }
+
+
+
+int32_t TagFunTest(void)
+{
+   QCBORDecodeContext DCtx;
+   QCBORError uErr;
+
+   QCBORDecode_Init(&DCtx,
+                    UsefulBuf_FROM_BYTE_ARRAY_LITERAL(spTagInput),
+                    0);
+
+   uint64_t uTagNumber;
+
+   uTagNumber = QCBORDecode_PeekTagNumber(&DCtx);
+   if(QCBORDecode_GetError(&DCtx)) {
+      return -1;
+   }
+
+   if(uTagNumber != CBOR_TAG_CBOR_MAGIC) {
+      return -2;
+   }
+
+   uint64_t puT[] = {CBOR_TAG_CBOR_MAGIC, CBOR_TAG_INVALID64 };
+   
+   bool b = QCBORDecode_ProcessTagNumber(&DCtx,
+                                puT,
+                                &uTagNumber);
+
+
+   if(! b || uTagNumber != CBOR_TAG_CBOR_MAGIC) {
+      return -2;
+   }
+
+   QCBORItem Item;
+   uErr = QCBORDecode_GetNext(&DCtx, &Item);
+   if(uErr != QCBOR_SUCCESS || Item.uDataType != QCBOR_TYPE_ARRAY) {
+      return -3;
+   }
+
+
+
+   return 0;
+}

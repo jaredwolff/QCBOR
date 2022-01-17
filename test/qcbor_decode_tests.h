@@ -314,4 +314,11 @@ Test decoding of booleans
 int32_t BoolTest(void);
 
 
+/*
+Test special tag processing functions.
+*/
+int32_t TagFunTest(void);
+
+
+
 #endif /* defined(__QCBOR__qcbort_decode_tests__) */

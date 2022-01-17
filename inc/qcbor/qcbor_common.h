@@ -524,7 +524,11 @@ typedef enum {
 
    /** Floating point support is completely turned off, encoding/decoding
        floating point numbers is not possible. */
-   QCBOR_ERR_ALL_FLOAT_DISABLED = 46
+   QCBOR_ERR_ALL_FLOAT_DISABLED = 46,
+
+   // TODO: fill in documentaiton
+   QCBOR_ERR_TAG_REQUIREMENT = 47,
+
 
    /* This is stored in uint8_t; never add values > 255 */
 } QCBORError;
