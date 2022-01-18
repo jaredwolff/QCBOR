@@ -1,0 +1,6 @@
+config QCBOR
+	bool "QCBOR library"
+	help
+	  Enable QCBOR library. QCBOR is a comprehensive, powerful,
+	  ommercial-quality CBOR encoder/ decoder that is still
+	  suited for small devices
